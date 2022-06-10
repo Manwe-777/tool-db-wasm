@@ -1,0 +1,22 @@
+[package]
+name = "tool-db-wasm"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[target.wasm32-unknown-unknown]
+rustflags = [
+  "-C", "link-args=-z stack-size=5000000",
+]
+
+[dependencies]
+getrandom = { version = "0.2", features = ["js"] }
+hex = "0.4.3"
+wasm-bindgen = { version = "0.2.80" }
+web3 = { version = "0.18.0", default-features = false, features = [ "eip-1193", "wasm", "signing" ] }
+
+
